@@ -11,3 +11,13 @@ class TramaQueue:
         return self.messages.get()
     def size(self):
         return self.messages.qsize()
+    def is_empty():
+        return self.messages.empty()
+    def clear():
+        while not self.messages.empty():
+            self.messages.get()
+    def peek(self):
+        if self.messages.empty():
+            return None
+    
+        return self.messages.queue[0]
