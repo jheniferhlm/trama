@@ -8,3 +8,17 @@ class Broker:
             self.queues |= {name: TramaQueue(name)}
     def get_queue(self, name):
         return self.queues.get(name)
+    def publish(self, name, message):
+        queue = self.queues.get(name)
+        
+        if queue:
+            return queue.publish(message)
+        
+        return None
+    def consume(self, name):
+        queue = self.queues.get(name)
+        
+        if queue:
+            return queue.consume()
+        
+        return None

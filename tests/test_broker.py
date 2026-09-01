@@ -1,4 +1,5 @@
 from trama.broker import Broker
+from trama.message import Message
 
 def test_broker_starts_without_queues():
     broker = Broker()
@@ -34,3 +35,25 @@ def test_get_nonexistent_queue():
     queue = broker.get_queue("orders")
 
     assert queue is None
+
+def test_broker_publish_and_consume():
+    broker = Broker()
+    broker.create_queue("orders")
+    message = Message.create("Pedido 123")
+    broker.publish("orders", message)
+    result = broker.consume("orders")
+
+    assert result == message
+    
+def test_publish_to_nonexistent_queue():
+    broker = Broker()
+    message = Message.create("Pedido 123")
+    result = broker.publish("orders", message)
+
+    assert result is None
+    
+def test_consume_from_nonexistent_queue():
+    broker = Broker()
+    result = broker.consume("orders")
+
+    assert result is None
