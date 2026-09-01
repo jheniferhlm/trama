@@ -21,3 +21,8 @@ class TramaQueue:
             return None
     
         return self.messages.queue[0]
+    def try_consume(self):
+        if self.messages.empty():
+            return None
+        
+        return self.messages.get(block=False)
