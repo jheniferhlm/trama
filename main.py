@@ -1,20 +1,21 @@
-from trama.message import Message
-from trama.queue import TramaQueue
+import threading
+from trama.server import Server
+from trama.client import Client
 
-queue = TramaQueue("orders")
+def start_server():
+    server = Server()
+    connection, address = server.accept()
+    print("Cliente conectado:", address)
 
-message1 = Message.create("Order 123")
-message2 = Message.create("Order 456")
+def start_client():
+    client = Client()
+    client.connect("127.0.0.1", 5000)
+    print("Cliente conectado ao servidor!")
 
-queue.publish(message1)
-queue.publish(message2)
+server_thread = threading.Thread(target=start_server)
+client_thread = threading.Thread(target=start_client)
 
-print("Messages in queue:", queue.size())
-
-message = queue.consume()
-
-print("Message:")
-print("ID:", message.id)
-print("Body:", message.body)
-
-print("Messages left:", queue.size())
+server_thread.start()
+client_thread.start()
+server_thread.join()
+client_thread.join()
