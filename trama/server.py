@@ -7,4 +7,7 @@ class Server:
         self.socket.listen()
     def accept(self):
         connection, address = self.socket.accept()
+        data = connection.recv(1024)
+        strmsg = data.decode('utf-8')
+        print("Received:", strmsg)
         return connection, address

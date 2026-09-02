@@ -5,3 +5,6 @@ class Client:
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     def connect(self, address, port):
         self.socket.connect((address, port))
+    def send(self, message):
+        bitmsg = message.encode('utf-8')
+        self.socket.send(bitmsg)

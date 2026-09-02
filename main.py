@@ -5,12 +5,13 @@ from trama.client import Client
 def start_server():
     server = Server()
     connection, address = server.accept()
-    print("Cliente conectado:", address)
+    print("Client connected:", address)
 
 def start_client():
     client = Client()
     client.connect("127.0.0.1", 5000)
-    print("Cliente conectado ao servidor!")
+    client.send("hello Trama")
+    print("Client connected to the server!")
 
 server_thread = threading.Thread(target=start_server)
 client_thread = threading.Thread(target=start_client)
