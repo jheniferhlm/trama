@@ -44,7 +44,7 @@ def test_try_consume_empty_queue():
     
 def test_try_consume_returns_message():
     queue = TramaQueue("orders")
-    message = Message.create("Pedido 123")
+    message = Message.create("Order 123")
     queue.publish(message)
     result = queue.try_consume()
 

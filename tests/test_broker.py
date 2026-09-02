@@ -39,7 +39,7 @@ def test_get_nonexistent_queue():
 def test_broker_publish_and_consume():
     broker = Broker()
     broker.create_queue("orders")
-    message = Message.create("Pedido 123")
+    message = Message.create("Order 123")
     broker.publish("orders", message)
     result = broker.consume("orders")
 
@@ -47,7 +47,7 @@ def test_broker_publish_and_consume():
     
 def test_publish_to_nonexistent_queue():
     broker = Broker()
-    message = Message.create("Pedido 123")
+    message = Message.create("Order 123")
     result = broker.publish("orders", message)
 
     assert result is None
