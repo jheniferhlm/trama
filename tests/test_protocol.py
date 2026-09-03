@@ -1,4 +1,5 @@
 from trama.protocol import Protocol
+import pytest
 
 def test_parse_publish():
     protocol = Protocol()
@@ -16,3 +17,8 @@ def test_parse_consume():
     assert command == "CONSUME"
     assert queue == "orders"
     assert body == ""
+    
+def test_parse_invalid():
+    protocol = Protocol()
+    with pytest.raises(ValueError):
+        command, queue, body = protocol.parse("DELETE orders")

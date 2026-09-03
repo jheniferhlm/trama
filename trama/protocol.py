@@ -6,3 +6,5 @@ class Protocol:
                 return messages[0], messages[1], messages[2]
             case 'CONSUME':
                 return messages[0], messages[1], ""
+            case _:
+                raise ValueError("Invalid command")
