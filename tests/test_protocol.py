@@ -1,4 +1,6 @@
 from trama.protocol import Protocol
+from trama.broker import Broker
+from trama.message import Message
 import pytest
 
 def test_parse_publish():
@@ -43,3 +45,18 @@ def test_parse_publish_empty_body():
     protocol = Protocol()
     with pytest.raises(ValueError):
         protocol.parse("PUBLISH orders ")
+        
+def test_publish_command():
+    protocol = Protocol()
+    broker = Broker()
+    command, queue, body = protocol.parse("PUBLISH orders Order 123")
+    
+    broker.create_queue(queue)
+    message = Message.create(body)
+    broker.publish(queue, message)
+    received = broker.consume(queue)
+    
+    assert command == "PUBLISH"
+    assert queue == "orders"
+    assert body == "Order 123"
+    assert received.body == "Order 123"
