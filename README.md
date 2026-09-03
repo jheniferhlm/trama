@@ -41,11 +41,13 @@ trama/
 │   ├── producer.py
 │   ├── consumer.py
 │   ├── server.py
+│   ├── protocol.py
 │   └── client.py
 │
 ├── tests/
 │   ├── test_queue.py
 │   ├── test_broker.py
+│   ├── test_protocol.py
 │   └── test_producer_consumer.py
 │
 └── main.py
@@ -62,7 +64,7 @@ trama/
 * [x] TCP server
 * [x] TCP client
 * [x] Basic message transmission
-* [ ] Communication protocol
+* [x] Communication protocol
 * [ ] ACKs
 * [ ] Multiple client connections
 * [ ] Broker + TCP integration
