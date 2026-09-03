@@ -8,3 +8,7 @@ class Client:
     def send(self, message):
         bitmsg = message.encode('utf-8')
         self.socket.send(bitmsg)
+    def receive(self):
+        bytesmsg = self.socket.recv(1024)
+        strmsg = bytesmsg.decode('utf-8')
+        return strmsg

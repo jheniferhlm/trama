@@ -11,3 +11,6 @@ class Server:
         strmsg = data.decode('utf-8')
         print("Received:", strmsg)
         return connection, address
+    def send(self, connection, message):
+        bytesmsg = message.encode('utf-8')
+        connection.send(bytesmsg)
