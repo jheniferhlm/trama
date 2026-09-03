@@ -33,3 +33,13 @@ def test_parse_consume_without_queue():
     protocol = Protocol()
     with pytest.raises(ValueError):
         protocol.parse("CONSUME")
+        
+def test_parse_publish_with_empty_message():
+    protocol = Protocol()
+    with pytest.raises(ValueError):
+        protocol.parse("PUBLISH orders  ")
+        
+def test_parse_publish_empty_body():
+    protocol = Protocol()
+    with pytest.raises(ValueError):
+        protocol.parse("PUBLISH orders ")

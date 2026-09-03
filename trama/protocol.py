@@ -4,7 +4,10 @@ class Protocol:
         match messages[0]:
             case 'PUBLISH':
                 if len(messages) == 3:
-                    return messages[0], messages[1], messages[2]
+                    if messages[2].strip():
+                        return messages[0], messages[1], messages[2]
+                    else:
+                        raise ValueError("Invalid command")
                 else:
                     raise ValueError("Invalid command")
             case 'CONSUME':
