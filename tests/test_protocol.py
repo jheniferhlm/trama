@@ -22,3 +22,14 @@ def test_parse_invalid():
     protocol = Protocol()
     with pytest.raises(ValueError):
         command, queue, body = protocol.parse("DELETE orders")
+        
+def test_parse_publish_without_body():
+    protocol = Protocol()
+    with pytest.raises(ValueError):
+        protocol.parse("PUBLISH orders")
+
+
+def test_parse_consume_without_queue():
+    protocol = Protocol()
+    with pytest.raises(ValueError):
+        protocol.parse("CONSUME")
