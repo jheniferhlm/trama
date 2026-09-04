@@ -27,7 +27,11 @@ class Server:
         match command:
             case 'PUBLISH':
                 message = Message.create(body)
-                return self.broker.publish(queue, message)
+                
+                if self.broker.publish(queue, message):
+                    return "ACK"
+
+                return None
             case 'CONSUME':
                 return self.broker.consume(queue)
             case _:

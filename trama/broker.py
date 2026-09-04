@@ -13,8 +13,8 @@ class Broker:
         
         if queue:
             return queue.publish(message)
-        
-        return None
+
+        return False
     def consume(self, name):
         queue = self.queues.get(name)
         

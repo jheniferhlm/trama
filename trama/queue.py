@@ -7,13 +7,14 @@ class TramaQueue:
         self.messages = Queue()
     def publish(self, message: Message):
         self.messages.put(message)
+        return True
     def consume(self):
         return self.messages.get()
     def size(self):
         return self.messages.qsize()
-    def is_empty():
+    def is_empty(self):
         return self.messages.empty()
-    def clear():
+    def clear(self):
         while not self.messages.empty():
             self.messages.get()
     def peek(self):
