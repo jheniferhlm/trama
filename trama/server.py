@@ -38,4 +38,8 @@ class Server:
                 return None
     def process(self, connection):
         message = self.receive(connection)
-        return self.handle(message)
+        result = self.handle(message)
+        if result:
+            self.send(connection, result)
+        else:
+            self.send(connection, "Error")

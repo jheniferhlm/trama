@@ -65,7 +65,7 @@ trama/
 * [x] TCP client
 * [x] Basic message transmission
 * [x] Communication protocol
-* [ ] ACKs
+* [x] ACKs
 * [ ] Multiple client connections
 * [ ] Broker + TCP integration
 * [ ] Message retries

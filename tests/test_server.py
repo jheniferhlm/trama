@@ -29,3 +29,14 @@ def test_server_process():
     socket2.close()
 
     assert message.body == "Order 123"
+    
+def test_server_process_sends_ack():
+    broker = Broker()
+    broker.create_queue("orders")
+    server = Server(broker)
+    socket1, socket2 = socket.socketpair()
+    socket1.send("PUBLISH orders Order 123".encode("utf-8"))
+    server.process(socket2)
+    response = socket1.recv(1024).decode("utf-8")
+
+    assert response == "ACK"
