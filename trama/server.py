@@ -32,3 +32,6 @@ class Server:
                 return self.broker.consume(queue)
             case _:
                 return None
+    def process(self, connection):
+        message = self.receive(connection)
+        return self.handle(message)
